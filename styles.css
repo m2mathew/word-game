@@ -7,7 +7,7 @@ body {
 header {
 	background-color: #EDE7F6;
 	box-sizing: border-box;
-	border: 3px solid #D1C4E9;
+	border: 10px solid #D1C4E9;
 	text-align: center;
 	font-family: 'Input Mono';
 }
@@ -17,16 +17,21 @@ main.main-section {
 	padding: 50px;
 }
 
-main.main-section button#start-button {
-	background-color: #90CAF9
-	margin-top: 40px;
+body main.main-section button#start-button {
+	background-color: #90CAF9;
+	margin-top: 20px;
 	text-transform: uppercase;
 	font-weight: bold;
 	border: 2px solid #1E88E5;
 	border-radius: 10px;
-	padding: 10px 30px;
+	padding: 5px 20px;
+	font-size: 1em;
 }
 
+body main.main-section button#start-button:hover {
+	background-color: #64B5F6;
+
+}
 
 main.main-section section form#form {
 	text-align: center;
@@ -40,7 +45,7 @@ main.main-section section form#form input#letter-submit{
 	width: 5%;
 	padding: 5px 10px;
 	border-radius: 5px;
-	margin: 20px 0;
+	margin: 10px 0;
 }
 
 main.main-section section form#form button.submit-button {
