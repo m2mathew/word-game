@@ -14,6 +14,7 @@ var startButton = document.getElementById('start-button');
 var message = document.getElementById('message');
 var inputForm = document.getElementById('form');
 var errorMessage = document.getElementById('error-message');
+var section = document.getElementById('section');
 
 startButton.addEventListener('click', function() {
 	messageDisplay();
@@ -21,6 +22,8 @@ startButton.addEventListener('click', function() {
 
 	startButton.style.display = 'none';
 	inputForm.style.display = 'block';
+	section.style.backgroundColor = '#E8EAF6';
+	section.style.border = '2px solid #1A237E'
 
 }, false);
 
