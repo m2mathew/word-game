@@ -5,16 +5,23 @@ body {
 }
 
 header {
+	padding: 40px 0;
 	background-color: #EDE7F6;
 	box-sizing: border-box;
 	border: 10px solid #D1C4E9;
 	text-align: center;
 	font-family: 'Input Mono';
+	font-size: 1.25em;
 }
 
 main.main-section {
 	text-align: center;
-	padding: 50px;
+	padding: 30px;
+}
+
+main.main-section h3#message {
+	font-size: 1.5em;
+	padding-bottom: 30px;
 }
 
 body main.main-section button#start-button {
@@ -29,22 +36,26 @@ body main.main-section button#start-button {
 }
 
 body main.main-section button#start-button:hover {
-	background-color: #64B5F6;
-
+	background-color: #C5CAE9;
 }
 
-main.main-section section {
+main.main-section section#word-section {
 	padding: 20px;
-	/*background-color: #E8EAF6;*/
 }
 
-main.main-section section form#form {
+main.main-section section#word-section div p#word-display {
+	display: none;
+	font-size: 2em;
+	color: #1A237E;
+}
+
+main.main-section section#word-section form#form {
 	text-align: center;
 	margin: 60px;
 	display: none;
 }
 
-main.main-section section form#form input#letter-submit{
+main.main-section section#word-section form#form input#letter-submit{
 	text-align: center;
 	width: 5%;
 	padding: 10px;
@@ -52,12 +63,12 @@ main.main-section section form#form input#letter-submit{
 	font-size: 1em;
 }
 
-main.main-section section form#form button.submit-button {
+main.main-section section#word-section form#form button.submit-button {
 
 }
 
-main.main-section section p#error-message {
+main.main-section section#word-section p#error-message {
 	display: none;
 	text-align: center;
-	color: #E57373;
+	color: #B71C1C;
 }

@@ -1,8 +1,15 @@
 var wordBank = ['the', 'bank', 'is', 'open', 'every', 'single', 'day', 'dude', 'man', 'person', 'dog', 'turtle'];
+var wordLength = 0;
+var guessWord = '';
+var counter = 0;
 
 function randomWord() {
 	var word = wordBank[Math.floor(Math.random() * wordBank.length)];
+	wordLength = word.length;
+	console.log('word length:', wordLength);
 	console.log('the chosen word is:', word);
+	if (word.length < 3) randomWord();
+	blankWord();
 	return word;
 }
 
@@ -10,20 +17,36 @@ function messageDisplay() {
 	message.firstChild.nodeValue = 'Let\'s do this';
 }
 
+function blankWord() {
+	var newArray = [];
+	for(var i = 0; i < wordLength; i++) {
+		newArray.push('_ ');
+	}
+	guessWord = newArray.join('');
+	console.log(guessWord);
+	return guessWord;
+}
+
 var startButton = document.getElementById('start-button');
 var message = document.getElementById('message');
 var inputForm = document.getElementById('form');
 var errorMessage = document.getElementById('error-message');
-var section = document.getElementById('section');
+var wordSection = document.getElementById('word-section');
+var wordDisplay = document.getElementById('word-display');
 
 startButton.addEventListener('click', function() {
 	messageDisplay();
 	randomWord();
 
-	startButton.style.display = 'none';
-	inputForm.style.display = 'block';
-	section.style.backgroundColor = '#E8EAF6';
-	section.style.border = '2px solid #1A237E'
+
+	setTimeout(function() {
+		startButton.style.display = 'none';
+		inputForm.style.display = 'block';
+		wordSection.style.backgroundColor = '#E8EAF6';
+		wordSection.style.border = '2px solid #1A237E'
+		wordDisplay.style.display = 'block';
+		wordDisplay.textContent = guessWord;
+	}, 750);
 
 }, false);
 
