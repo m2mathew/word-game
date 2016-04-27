@@ -42,8 +42,7 @@ startButton.addEventListener('click', function() {
 	setTimeout(function() {
 		startButton.style.display = 'none';
 		inputForm.style.display = 'block';
-		wordSection.style.backgroundColor = '#E8EAF6';
-		wordSection.style.border = '2px solid #1A237E'
+		wordSection.style.display = 'block';
 		wordDisplay.style.display = 'block';
 		wordDisplay.textContent = guessWord;
 	}, 750);
