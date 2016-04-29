@@ -38,7 +38,6 @@ startButton.addEventListener('click', function() {
 	messageDisplay();
 	randomWord();
 
-
 	setTimeout(function() {
 		startButton.style.display = 'none';
 		inputForm.style.display = 'block';
@@ -54,7 +53,6 @@ inputForm.addEventListener('submit', function(e) {
 	var attempt = e.target[0].value;
 
 	if (attempt === '') {
-		errorMessage.style.display = 'block';
 		errorMessage.textContent = 'Please enter a letter';
 	}
 

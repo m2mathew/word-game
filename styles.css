@@ -47,13 +47,14 @@ main.main-section section#word-section {
 	display: none;
 	padding: 20px;
 	background-color: #E8EAF6;
-	border: 2px solid #1A237E;
+	border: 10px solid #B39DDB;
 	box-shadow: 3px 3px 4px #F5F5F5;
 }
 
 main.main-section section#word-section div p#word-display {
 	display: none;
 	font-size: 2em;
+	font-weight: bold;
 	color: #1A237E;
 }
 
@@ -76,7 +77,6 @@ main.main-section section#word-section form#form button.submit-button {
 }
 
 main.main-section section#word-section p#error-message {
-	display: none;
 	text-align: center;
-	color: #B71C1C;
+	color: #F44336;
 }
