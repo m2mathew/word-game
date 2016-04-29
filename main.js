@@ -45,7 +45,7 @@ startButton.addEventListener('click', function() {
 		wordSection.style.display = 'block';
 		wordDisplay.style.display = 'block';
 		wordDisplay.textContent = guessWord;
-	}, 750);
+	}, 500);
 
 }, false);
 

@@ -48,7 +48,7 @@ main.main-section section#word-section {
 	padding: 20px;
 	background-color: #E8EAF6;
 	border: 2px solid #1A237E;
-	box-shadow: 2px 3px #F5F5F5;
+	box-shadow: 3px 3px 4px #F5F5F5;
 }
 
 main.main-section section#word-section div p#word-display {
