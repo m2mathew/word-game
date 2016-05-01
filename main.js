@@ -27,6 +27,11 @@ function blankWord() {
 	return guessWord;
 }
 
+function checkForLetter(letter) {
+	var letter = letter.toLowerCase();
+	return (letter.length === 1 && letter >= 'a' && letter <= 'z');
+}
+
 var startButton = document.getElementById('start-button');
 var message = document.getElementById('message');
 var inputForm = document.getElementById('form');
@@ -53,10 +58,12 @@ input.addEventListener('input', function(e) {
 	// it will be whatever has been entered in the input field
 	var attempt = e.target.value;
 
-	if (attempt === '') {
+	if (attempt.length === 1) {
+		checkForLetter(attempt);
+	}
+	if (attempt === ' ') {
 		errorMessage.textContent = 'Please enter a letter';
 	}
-
 	if (attempt.length !== 1) {
 		errorMessage.style.display = 'block';
 		errorMessage.textContent = 'Please enter only one letter';
