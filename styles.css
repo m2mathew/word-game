@@ -64,13 +64,19 @@ main.main-section section#word-section form#form {
 	display: none;
 }
 
-main.main-section section#word-section form#form input#letter-submit{
+main.main-section section#word-section form#form input#letter-submit {
 	text-align: center;
 	width: 5%;
 	padding: 10px;
 	border-radius: 5px;
 	font-size: 1em;
 }
+
+main.main-section section#word-section form#form input#letter-submit:focus {
+	-webkit-box-shadow: 0 0 12px rgba(51, 204, 255, 0.5);
+	-webkit-animation: pulse 1.5s infinite ease-in-out;
+}
+
 
 main.main-section section#word-section form#form button.submit-button {
 
@@ -79,4 +85,18 @@ main.main-section section#word-section form#form button.submit-button {
 main.main-section section#word-section p#error-message {
 	text-align: center;
 	color: #F44336;
+}
+
+@-webkit-keyframes pulse {
+	0% {
+		-webkit-box-shadow: 0 0 12px rgba(51, 204, 255, 0.1);
+	}
+
+	50% {
+		-webkit-box-shadow: 0 0 12px rgba(51, 204, 255, 0.99);
+	}
+
+	100% {
+		-webkit-box-shadow: 0 0 12px rgba(51, 204, 255, 0.1);
+	}
 }
