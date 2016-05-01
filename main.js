@@ -33,6 +33,7 @@ var inputForm = document.getElementById('form');
 var errorMessage = document.getElementById('error-message');
 var wordSection = document.getElementById('word-section');
 var wordDisplay = document.getElementById('word-display');
+var input = document.getElementById('letter-submit');
 
 startButton.addEventListener('click', function() {
 	messageDisplay();
@@ -48,9 +49,9 @@ startButton.addEventListener('click', function() {
 
 }, false);
 
-inputForm.addEventListener('submit', function(e) {
-	e.preventDefault();
-	var attempt = e.target[0].value;
+input.addEventListener('input', function(e) {
+	// it will be whatever has been entered in the input field
+	var attempt = e.target.value;
 
 	if (attempt === '') {
 		errorMessage.textContent = 'Please enter a letter';
@@ -59,6 +60,16 @@ inputForm.addEventListener('submit', function(e) {
 	if (attempt.length !== 1) {
 		errorMessage.style.display = 'block';
 		errorMessage.textContent = 'Please enter only one letter';
+	}
+
+}, false);
+
+inputForm.addEventListener('submit', function(e) {
+	e.preventDefault();
+	var attempt = e.target[0].value;
+
+	if (attempt === '') {
+		errorMessage.textContent = 'Please enter a letter';
 	}
 
 }, false);
