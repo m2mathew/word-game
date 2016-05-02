@@ -1,4 +1,4 @@
-var wordBank = ['the', 'bank', 'is', 'open', 'every', 'single', 'day', 'dude', 'man', 'person', 'dog', 'turtle'];
+var wordBank = ['the', 'bank', 'is', 'open', 'every', 'single', 'day', 'dude', 'man', 'person', 'dog', 'turtle', 'drum', 'internet', 'game'];
 var wordLength = 0;
 var guessWord = '';
 var counter = 0;
@@ -29,7 +29,7 @@ function blankWord() {
 
 function checkForLetter(letter) {
 	var letter = letter.toLowerCase();
-	return (letter.length === 1 && letter >= 'a' && letter <= 'z');
+	return letter.length === 1 && letter >= 'a' && letter <= 'z';
 }
 
 var startButton = document.getElementById('start-button');
@@ -55,16 +55,20 @@ startButton.addEventListener('click', function() {
 }, false);
 
 input.addEventListener('input', function(e) {
-	// it will be whatever has been entered in the input field
 	var attempt = e.target.value;
 
-	if (attempt.length === 1) {
-		checkForLetter(attempt);
+	if (attempt === '') {
+		errorMessage.textContent = '';
 	}
-	if (attempt === ' ') {
+	else if (attempt.length === 1) {
+		if (!checkForLetter(attempt)) {
+			errorMessage.textContent = 'Please enter a letter';
+		}
+	}
+	else if (attempt === ' ') {
 		errorMessage.textContent = 'Please enter a letter';
 	}
-	if (attempt.length !== 1) {
+ 	else if (attempt.length !== 1) {
 		errorMessage.style.display = 'block';
 		errorMessage.textContent = 'Please enter only one letter';
 	}
@@ -74,9 +78,5 @@ input.addEventListener('input', function(e) {
 inputForm.addEventListener('submit', function(e) {
 	e.preventDefault();
 	var attempt = e.target[0].value;
-
-	if (attempt === '') {
-		errorMessage.textContent = 'Please enter a letter';
-	}
 
 }, false);

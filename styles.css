@@ -5,7 +5,7 @@ body {
 }
 
 header {
-	padding: 40px 0;
+	padding: 20px 0;
 	background-color: #EDE7F6;
 	box-sizing: border-box;
 	border: 10px solid #D1C4E9;
@@ -15,7 +15,7 @@ header {
 }
 
 header h1 {
-	text-shadow: 2px 3px #D1C4E9;
+	text-shadow: 2px 3px #B39DDB;
 }
 
 main.main-section {
@@ -25,17 +25,17 @@ main.main-section {
 
 main.main-section h3#message {
 	font-size: 1.5em;
-	padding-bottom: 30px;
+	padding-bottom: 5px;
 }
 
 body main.main-section button#start-button {
 	background-color: #E8EAF6;
-	margin-top: 20px;
+	margin-top: 5px;
 	text-transform: uppercase;
 	font-weight: bold;
 	border: 2px solid #1A237E;
 	border-radius: 10px;
-	padding: 5px 20px;
+	padding: 0 10px;
 	font-size: 1em;
 }
 
@@ -44,10 +44,11 @@ body main.main-section button#start-button:hover {
 }
 
 main.main-section section#word-section {
+	text-align: center;
 	display: none;
 	padding: 20px;
 	background-color: #E8EAF6;
-	border: 10px solid #B39DDB;
+	border: 8px solid #B39DDB;
 	box-shadow: 3px 3px 4px #F5F5F5;
 }
 
@@ -60,7 +61,7 @@ main.main-section section#word-section div p#word-display {
 
 main.main-section section#word-section form#form {
 	text-align: center;
-	margin: 60px;
+	margin: 30px;
 	display: none;
 }
 
@@ -73,13 +74,19 @@ main.main-section section#word-section form#form input#letter-submit {
 }
 
 main.main-section section#word-section form#form input#letter-submit:focus {
-	-webkit-box-shadow: 0 0 12px rgba(51, 204, 255, 0.5);
+	-webkit-box-shadow: 0 0 12px rgba(237 ,231 ,246, 0.5);
 	-webkit-animation: pulse 1.5s infinite ease-in-out;
 }
 
-
 main.main-section section#word-section form#form button.submit-button {
-
+	padding: 10px;
+	margin-left: 20px;
+	border-radius: 5px;
+	font-size: 1em;
+	text-transform: uppercase;
+	background-color: #D1C4E9;
+	font-weight: bold;
+	font-size: 0.8em;
 }
 
 main.main-section section#word-section p#error-message {
@@ -89,14 +96,14 @@ main.main-section section#word-section p#error-message {
 
 @-webkit-keyframes pulse {
 	0% {
-		-webkit-box-shadow: 0 0 12px rgba(51, 204, 255, 0.1);
+		-webkit-box-shadow: 0 0 12px rgba(237, 231, 246, 0.1);
 	}
 
 	50% {
-		-webkit-box-shadow: 0 0 12px rgba(51, 204, 255, 0.99);
+		-webkit-box-shadow: 0 0 12px rgba(237, 231, 246, 0.99);
 	}
 
 	100% {
-		-webkit-box-shadow: 0 0 12px rgba(51, 204, 255, 0.1);
+		-webkit-box-shadow: 0 0 12px rgba(237, 231, 246, 0.1);
 	}
 }
