@@ -43,7 +43,17 @@ function checkForLetter(letter) {
 }
 
 function checkGuess(guess) {
-	console.log('let me check that guess:', guess);
+	counter++;
+	if (pickedWord.indexOf(guess) !== -1) {
+		setTimeout(function() {
+			message.firstChild.nodeValue = 'Most excellent.';
+		}, 175)
+	}
+	else {
+		setTimeout(function() {
+			message.firstChild.nodeValue = 'Nope. Try again.';
+		}, 175)
+	}
 }
 
 // Interact with the DOM
@@ -88,12 +98,12 @@ input.addEventListener('input', function(e) {
 // Handle submit
 inputForm.addEventListener('submit', function(e) {
 	e.preventDefault();
-	var attempt = e.target[0].value;
+	var attempt = e.target[0].value.toLowerCase();
 
 	if (attempt === '') {
 		errorMessage.textContent = 'Please enter something!';
 	}
-	else {
+	else if (attempt.length === 1 && attempt >= 'a' && attempt <= 'z') {
 		checkGuess(attempt);
 	}
 
