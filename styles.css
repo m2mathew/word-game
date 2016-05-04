@@ -78,7 +78,7 @@ main.main-section section#word-section form#form input#letter-submit:focus {
 	-webkit-animation: pulse 1.5s infinite ease-in-out;
 }
 
-main.main-section section#word-section form#form button.submit-button {
+main.main-section section#word-section form#form button#submit-button {
 	padding: 10px;
 	margin-left: 20px;
 	border-radius: 5px;
