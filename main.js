@@ -1,7 +1,7 @@
 // Initialize variables
 var wordBank = ['the', 'bank', 'is', 'open', 'every', 'single', 'day', 'dude', 'man', 'person', 'dog', 'turtle', 'drum', 'internet', 'game'];
 var wordLength = 0;
-var pickedWord = '';
+var randomWord = '';
 var guessWord = '';
 var usedLetters = [];
 var counter = 8;
@@ -15,20 +15,22 @@ var input = document.getElementById('letter-submit');
 var submitButton = document.getElementById('submit-button');
 
 // Initialize functions
-function randomWord() {
-	pickedWord = wordBank[Math.floor(Math.random() * wordBank.length)];
-	wordLength = pickedWord.length;
-	console.log('the chosen word is:', pickedWord);
-	if (pickedWord.length < 3) randomWord();
-	guessedWord();
-	return pickedWord;
+function getRandomWord() {
+	randomWord = wordBank[Math.floor(Math.random() * wordBank.length)];
+	wordLength = randomWord.length;
+	console.log('the chosen word is:', randomWord);
+	if (randomWord.length < 3) {
+		getRandomWord();
+	}
+	getBlankWord();
+	return randomWord;
 }
 
 function messageDisplay() {
 	message.firstChild.nodeValue = 'Let\'s do this';
 }
 
-function guessedWord() {
+function getBlankWord() {
 	var newArray = [];
 	for(var i = 0; i < wordLength; i++) {
 		newArray.push('_ ');
@@ -50,15 +52,15 @@ function checkGuess(guess) {
 		}, 175)
 	}
 	usedLetters.push(guess);
-	console.log('this array is:', usedLetters);
+	console.log('used letters:', usedLetters);
 
-  if (pickedWord.indexOf(guess) !== -1) {
+  if (randomWord.indexOf(guess) !== -1) {
 
 		form.reset();
 		setTimeout(function() {
 			message.firstChild.nodeValue = 'Most excellent.';
-			var newIndex = pickedWord.indexOf(guess);
-			console.log(newIndex);
+			var newIndex = randomWord.indexOf(guess);
+
 		}, 175)
 	}
 	else {
@@ -74,7 +76,7 @@ function checkGuess(guess) {
 // Start button shows game board
 startButton.addEventListener('click', function() {
 	messageDisplay();
-	randomWord();
+	getRandomWord();
 
 	setTimeout(function() {
 		startButton.style.display = 'none';
