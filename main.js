@@ -3,7 +3,8 @@ var wordBank = ['the', 'bank', 'is', 'open', 'every', 'single', 'day', 'dude', '
 var wordLength = 0;
 var pickedWord = '';
 var guessWord = '';
-var counter = 0;
+var usedLetters = [];
+var counter = 8;
 var startButton = document.getElementById('start-button');
 var message = document.getElementById('message');
 var form = document.getElementById('form');
@@ -43,11 +44,21 @@ function checkForLetter(letter) {
 }
 
 function checkGuess(guess) {
-	counter++;
-	if (pickedWord.indexOf(guess) !== -1) {
+	if (usedLetters.indexOf(guess) !== -1) {
+		setTimeout(function() {
+			message.firstChild.nodeValue = 'Already guessed that letter.';
+		}, 175)
+	}
+	usedLetters.push(guess);
+	console.log('this array is:', usedLetters);
+
+  if (pickedWord.indexOf(guess) !== -1) {
+
 		form.reset();
 		setTimeout(function() {
 			message.firstChild.nodeValue = 'Most excellent.';
+			var newIndex = pickedWord.indexOf(guess);
+			console.log(newIndex);
 		}, 175)
 	}
 	else {
@@ -71,6 +82,7 @@ startButton.addEventListener('click', function() {
 		wordSection.style.display = 'block';
 		wordDisplay.style.display = 'block';
 		wordDisplay.textContent = guessWord;
+		input.focus();
 	}, 500);
 
 }, false);
@@ -99,9 +111,13 @@ input.addEventListener('input', function(e) {
 // Handle submit
 form.addEventListener('submit', function(e) {
 	e.preventDefault();
+	counter--;
 	var attempt = e.target[0].value.toLowerCase();
 
-	if (attempt === '') {
+	if (counter === 0) {
+		message.firstChild.nodeValue = 'Game over!';
+	}
+	else if (attempt === '') {
 		errorMessage.textContent = 'Please enter something!';
 	}
 	else if (attempt.length === 1 && attempt >= 'a' && attempt <= 'z') {
