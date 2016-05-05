@@ -4,7 +4,8 @@ var wordLength = 0;
 var randomWord = '';
 var guessWord = '';
 var usedLetters = [];
-var counter = 8;
+var counter = 0;
+var isWinner = false;
 var startButton = document.getElementById('start-button');
 var message = document.getElementById('message');
 var form = document.getElementById('form');
@@ -13,6 +14,7 @@ var wordSection = document.getElementById('word-section');
 var wordDisplay = document.getElementById('word-display');
 var input = document.getElementById('letter-submit');
 var submitButton = document.getElementById('submit-button');
+var letterDisplay = document.getElementById('letter-display');
 
 // Initialize functions
 function getRandomWord() {
@@ -50,9 +52,10 @@ function guessTransform(word, newIndex, guess) {
 
 	wordToCheck[newIndex] = guess;
 
-	return wordToCheck;
+	return wordToCheck.join(',');
 }
 
+// checking if guess is in word and displaying that new word, also updating the guessed letters
 function checkGuess(guess) {
 	if (usedLetters.indexOf(guess) !== -1) {
 		setTimeout(function() {
@@ -60,6 +63,9 @@ function checkGuess(guess) {
 		}, 175)
 	}
 	usedLetters.push(guess);
+	letterDisplay.style.display = 'inline-block';
+	var disp = usedLetters[counter];
+	letterDisplay.textContent = disp;
 	console.log('used letters:', usedLetters);
 
   if (randomWord.indexOf(guess) !== -1) {
@@ -128,11 +134,15 @@ input.addEventListener('input', function(e) {
 // Handle submit
 form.addEventListener('submit', function(e) {
 	e.preventDefault();
-	counter--;
+	counter++;
 	var attempt = e.target[0].value.toLowerCase();
 
-	if (counter === 0) {
+	if (isWinner === true) {
+		message.firstChild.nodeValue = 'You got it!';
+	}
+	else if (counter === 8 && isWinner === false) {
 		message.firstChild.nodeValue = 'Game over!';
+		form.style.display = 'none';
 	}
 	else if (attempt === '') {
 		errorMessage.textContent = 'Please enter something!';

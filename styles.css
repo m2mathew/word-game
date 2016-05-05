@@ -95,6 +95,15 @@ main.main-section section#word-section p#error-message {
 	color: #F44336;
 }
 
+main.main-section section#letter-bank {
+	display: none;
+	width: 25%;
+	padding: 20px;
+	float: left;
+	border: 6px solid #D1C4E9;;
+}
+
+
 @-webkit-keyframes pulse {
 	0% {
 		-webkit-box-shadow: 0 0 12px rgba(237, 231, 246, 0.1);
