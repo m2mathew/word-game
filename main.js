@@ -36,7 +36,6 @@ function getBlankWord() {
 		newArray.push('_ ');
 	}
 	guessWord = newArray.join('');
-	console.log(guessWord);
 	return guessWord;
 }
 
@@ -55,12 +54,20 @@ function checkGuess(guess) {
 	console.log('used letters:', usedLetters);
 
   if (randomWord.indexOf(guess) !== -1) {
-
 		form.reset();
 		setTimeout(function() {
 			message.firstChild.nodeValue = 'Most excellent.';
-			var newIndex = randomWord.indexOf(guess);
 
+			// find the index of the current guess in the random word
+			var newIndex = randomWord.indexOf(guess);
+			console.log('new index:', newIndex);
+
+			// assign the guessed letter to the correct index
+			guessWord.split(' ');
+			console.log(typeof guessWord);
+
+			// display the new word on the screen
+			wordDisplay.textContent = guessWord;
 		}, 175)
 	}
 	else {

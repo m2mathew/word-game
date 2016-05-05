@@ -8,7 +8,7 @@ header {
 	padding: 20px 0;
 	background-color: #EDE7F6;
 	box-sizing: border-box;
-	border: 10px solid #D1C4E9;
+	border: 10px solid #B39DDB;
 	text-align: center;
 	font-family: 'Input Mono';
 	font-size: 1.25em;
@@ -48,12 +48,13 @@ main.main-section section#word-section {
 	display: none;
 	padding: 20px;
 	background-color: #E8EAF6;
-	border: 8px solid #B39DDB;
+	border: 8px solid #D1C4E9;
 	box-shadow: 3px 3px 4px #F5F5F5;
 }
 
 main.main-section section#word-section div p#word-display {
 	display: none;
+	letter-spacing: 5px;
 	font-size: 2em;
 	font-weight: bold;
 	color: #1A237E;
