@@ -54,7 +54,7 @@ main.main-section section#word-section {
 
 main.main-section section#word-section div p#word-display {
 	display: none;
-	letter-spacing: 5px;
+	letter-spacing: 3px;
 	font-size: 2em;
 	font-weight: bold;
 	color: #1A237E;

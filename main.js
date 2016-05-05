@@ -44,6 +44,15 @@ function checkForLetter(letter) {
 	return letter.length === 1 && letter >= 'a' && letter <= 'z';
 }
 
+function guessTransform(word, newIndex, guess) {
+	var wordToCheck = word.toLowerCase().trim().split(' ');
+	console.log(wordToCheck);
+
+	wordToCheck[newIndex] = guess;
+
+	return wordToCheck;
+}
+
 function checkGuess(guess) {
 	if (usedLetters.indexOf(guess) !== -1) {
 		setTimeout(function() {
@@ -63,11 +72,10 @@ function checkGuess(guess) {
 			console.log('new index:', newIndex);
 
 			// assign the guessed letter to the correct index
-			guessWord.split(' ');
-			console.log(typeof guessWord);
+			wordToShow = guessTransform(guessWord, newIndex, guess);
 
 			// display the new word on the screen
-			wordDisplay.textContent = guessWord;
+			wordDisplay.textContent = wordToShow;
 		}, 175)
 	}
 	else {
