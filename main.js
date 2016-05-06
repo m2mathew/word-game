@@ -58,11 +58,6 @@ function guessTransform(word, newIndex, guess) {
 
 // checking if guess is in word and displaying that new word, also updating the guessed letters
 function checkGuess(guess) {
-	if (usedLetters.indexOf(guess) !== -1) {
-		setTimeout(function() {
-			message.firstChild.nodeValue = 'Already guessed that letter.';
-		}, 175)
-	}
 	usedLetters.push(guess);
 	console.log('used letters:', usedLetters[0]);
 
@@ -137,6 +132,7 @@ input.addEventListener('input', function(e) {
 form.addEventListener('submit', function(e) {
 	e.preventDefault();
 	counter++;
+
 	var attempt = e.target[0].value.toLowerCase();
 
 	if (isWinner === true) {
@@ -150,7 +146,14 @@ form.addEventListener('submit', function(e) {
 		errorMessage.textContent = 'Please enter something!';
 	}
 	else if (attempt.length === 1 && attempt >= 'a' && attempt <= 'z') {
-		checkGuess(attempt);
+		if (usedLetters.indexOf(attempt) !== -1) {
+			setTimeout(function() {
+				message.firstChild.nodeValue = 'Already guessed that letter.';
+			}, 175)
+		}
+		else {
+			checkGuess(attempt);
+		}
 	}
 	console.log('count:', counter);
 

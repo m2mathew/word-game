@@ -2,6 +2,8 @@ body {
 	margin: 0 auto;
 	padding: 0;
 	font-family: 'Roboto', sans-serif;
+	background-color: #333;
+	color: #fff;
 }
 
 header {
@@ -12,6 +14,7 @@ header {
 	text-align: center;
 	font-family: 'Input Mono';
 	font-size: 1.25em;
+	color: #000;
 }
 
 header h1 {
@@ -21,11 +24,13 @@ header h1 {
 main.main-section {
 	text-align: center;
 	padding: 30px;
+	color: #000;
 }
 
 main.main-section h3#message {
 	font-size: 1.5em;
 	padding-bottom: 5px;
+	color: #fff;
 }
 
 body main.main-section button#start-button {
@@ -103,6 +108,7 @@ main.main-section section#letter-bank {
 	border: 5px solid #D1C4E9;
 	margin-top: 10px;
 	font-size: 1.25em;
+	background-color: #fff;
 }
 
 
