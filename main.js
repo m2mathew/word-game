@@ -14,6 +14,7 @@ var wordSection = document.getElementById('word-section');
 var wordDisplay = document.getElementById('word-display');
 var input = document.getElementById('letter-submit');
 var submitButton = document.getElementById('submit-button');
+var letterBank = document.getElementById('letter-bank');
 var letterDisplay = document.getElementById('letter-display');
 
 // Initialize functions
@@ -63,10 +64,11 @@ function checkGuess(guess) {
 		}, 175)
 	}
 	usedLetters.push(guess);
-	letterDisplay.style.display = 'inline-block';
-	var disp = usedLetters[counter];
-	letterDisplay.textContent = disp;
-	console.log('used letters:', usedLetters);
+	console.log('used letters:', usedLetters[0]);
+
+	letterBank.style.display = 'block';
+	var disp = usedLetters[counter - 1];
+	letterDisplay.textContent += (disp + '  ');
 
   if (randomWord.indexOf(guess) !== -1) {
 		form.reset();

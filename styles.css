@@ -100,7 +100,9 @@ main.main-section section#letter-bank {
 	width: 25%;
 	padding: 20px;
 	float: left;
-	border: 6px solid #D1C4E9;;
+	border: 5px solid #D1C4E9;
+	margin-top: 10px;
+	font-size: 1.25em;
 }
 
 
