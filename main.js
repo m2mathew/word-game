@@ -36,7 +36,7 @@ function messageDisplay() {
 function getBlankWord() {
 	var newArray = [];
 	for(var i = 0; i < wordLength; i++) {
-		newArray.push('_ ');
+		newArray.push('-');
 	}
 	guessWord = newArray.join('');
 	return guessWord;
@@ -53,7 +53,7 @@ function guessTransform(word, newIndex, guess) {
 
 	wordToCheck[newIndex] = guess;
 
-	return wordToCheck.join(',');
+	return wordToCheck.join('');
 }
 
 // checking if guess is in word and displaying that new word, also updating the guessed letters
@@ -72,7 +72,6 @@ function checkGuess(guess) {
 
 			// find the index of the current guess in the random word
 			var newIndex = randomWord.indexOf(guess);
-			console.log('new index:', newIndex);
 
 			// assign the guessed letter to the correct index
 			wordToShow = guessTransform(guessWord, newIndex, guess);
@@ -117,41 +116,48 @@ input.addEventListener('input', function(e) {
 	else if (attempt.length === 1) {
 		if (!checkForLetter(attempt)) {
 			errorMessage.textContent = 'Please enter a letter';
+			form.reset();
 		}
 	}
 	else if (attempt === ' ') {
 		errorMessage.textContent = 'Please enter a letter';
+		form.reset();
 	}
  	else if (attempt.length !== 1) {
 		errorMessage.style.display = 'block';
 		errorMessage.textContent = 'Please enter only one letter';
+		form.reset();
 	}
 }, false);
 
 // Handle submit
 form.addEventListener('submit', function(e) {
 	e.preventDefault();
-	counter++;
 
 	var attempt = e.target[0].value.toLowerCase();
 
 	if (isWinner === true) {
 		message.firstChild.nodeValue = 'You got it!';
+		form.reset();
 	}
 	else if (counter === 8 && isWinner === false) {
 		message.firstChild.nodeValue = 'Game over!';
 		form.style.display = 'none';
+		form.reset();
 	}
 	else if (attempt === '') {
 		errorMessage.textContent = 'Please enter something!';
+		form.reset();
 	}
 	else if (attempt.length === 1 && attempt >= 'a' && attempt <= 'z') {
 		if (usedLetters.indexOf(attempt) !== -1) {
 			setTimeout(function() {
 				message.firstChild.nodeValue = 'Already guessed that letter.';
+				form.reset();
 			}, 175)
 		}
 		else {
+			counter++;
 			checkGuess(attempt);
 		}
 	}

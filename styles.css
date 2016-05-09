@@ -103,7 +103,7 @@ main.main-section section#word-section p#error-message {
 main.main-section section#letter-bank {
 	display: none;
 	width: 25%;
-	padding: 20px;
+	padding: 12px;
 	float: left;
 	border: 5px solid #D1C4E9;
 	margin-top: 10px;
