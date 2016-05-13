@@ -30,7 +30,11 @@ function getRandomWord() {
 }
 
 function messageDisplay() {
-	message.firstChild.nodeValue = 'Let\'s do this';
+	message.firstChild.nodeValue = 'You get 8 guesses.';
+
+	setTimeout(function() {
+		message.firstChild.nodeValue = 'Let\'s do this';
+	}, 1500);
 }
 
 function getBlankWord() {
@@ -43,12 +47,11 @@ function getBlankWord() {
 }
 
 function checkForLetter(letter) {
-	var letter = letter.toLowerCase();
 	return letter.length === 1 && letter >= 'a' && letter <= 'z';
 }
 
 function guessTransform(word, newIndex, guess) {
-	var wordToCheck = word.toLowerCase().trim().split(' ');
+	var wordToCheck = word.trim().split(' ');
 	console.log(wordToCheck);
 
 	wordToCheck[newIndex] = guess;
