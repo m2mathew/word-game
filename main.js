@@ -5,6 +5,7 @@ var randomWord = '';
 var guessWord = '';
 var usedLetters = [];
 var counter = 0;
+var guessCount = 8;
 var isWinner = false;
 var startButton = document.getElementById('start-button');
 var message = document.getElementById('message');
@@ -16,6 +17,9 @@ var input = document.getElementById('letter-submit');
 var submitButton = document.getElementById('submit-button');
 var letterBank = document.getElementById('letter-bank');
 var letterDisplay = document.getElementById('letter-display');
+var guessText = document.getElementById('guess-text');
+var guessNumber = document.getElementById('guess-number');
+
 
 // Initialize functions
 function getRandomWord() {
@@ -61,6 +65,7 @@ function guessTransform(word, newIndex, guess) {
 
 // checking if guess is in word and displaying that new word, also updating the guessed letters
 function checkGuess(guess) {
+	guessCount--;
 	usedLetters.push(guess);
 	console.log('used letters:', usedLetters[0]);
 
@@ -104,6 +109,8 @@ startButton.addEventListener('click', function() {
 		wordSection.style.display = 'block';
 		wordDisplay.style.display = 'block';
 		wordDisplay.textContent = guessWord;
+		guessText.style.display = 'block';
+		guessText.textContent = "Guesses left: " + guessCount;
 		input.focus();
 	}, 500);
 

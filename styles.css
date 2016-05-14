@@ -54,7 +54,7 @@ main.main-section section#word-section {
 	padding: 20px;
 	background-color: #E8EAF6;
 	border: 8px solid #D1C4E9;
-	box-shadow: 3px 3px 4px #F5F5F5;
+	box-shadow: 2px 2px 2px #F5F5F5;
 }
 
 main.main-section section#word-section div p#word-display {
@@ -109,8 +109,20 @@ main.main-section section#letter-bank {
 	margin-top: 10px;
 	font-size: 1.25em;
 	background-color: #fff;
+	box-shadow: 2px 2px 2px #F5F5F5;
 }
 
+main.main-section section#guess-text {
+	display: none;
+	width: 25%;
+	padding: 12px;
+	float: right;
+	border: 5px solid #D1C4E9;
+	margin-top: 10px;
+	font-size: 1.25em;
+	background-color: #fff;
+	box-shadow: 2px 2px 2px #F5F5F5;
+}
 
 @-webkit-keyframes pulse {
 	0% {
