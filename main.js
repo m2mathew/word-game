@@ -96,6 +96,14 @@ function checkGuess(guess) {
 	}
 }
 
+// end the game
+function gameOver() {
+	message.firstChild.nodeValue = 'Game over!';
+	errorMessage.style.display = 'none';
+	form.style.display = 'none';
+	form.reset();
+}
+
 // Interact with the DOM
 
 // Start button shows game board
@@ -151,9 +159,7 @@ form.addEventListener('submit', function(e) {
 		form.reset();
 	}
 	else if (counter === 8 && isWinner === false) {
-		message.firstChild.nodeValue = 'Game over!';
-		form.style.display = 'none';
-		form.reset();
+		gameOver();
 	}
 	else if (attempt === '') {
 		errorMessage.textContent = 'Please enter something!';
