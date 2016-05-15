@@ -22,8 +22,18 @@ var guessNumber = document.getElementById('guess-number');
 
 
 // Initialize functions
+function messageDisplay() {
+	if (counter === 0) {
+		message.firstChild.nodeValue = 'You get 8 guesses.';
+	}
+
+	setTimeout(function() {
+		message.firstChild.nodeValue = 'Let\'s do this';
+	}, 1500);
+}
+
 function getRandomWord() {
-	randomWord = wordBank[Math.floor(Math.random() * wordBank.length)];
+	randomWord = wordBank[Math.floor(Math.random() * wordBank.length)].toLowerCase();
 	wordLength = randomWord.length;
 	console.log('the chosen word is:', randomWord);
 	if (randomWord.length < 3) {
@@ -31,14 +41,6 @@ function getRandomWord() {
 	}
 	getBlankWord();
 	return randomWord;
-}
-
-function messageDisplay() {
-	message.firstChild.nodeValue = 'You get 8 guesses.';
-
-	setTimeout(function() {
-		message.firstChild.nodeValue = 'Let\'s do this';
-	}, 1500);
 }
 
 function getBlankWord() {
@@ -54,8 +56,8 @@ function checkForLetter(letter) {
 	return letter.length === 1 && letter >= 'a' && letter <= 'z';
 }
 
-function guessTransform(word, newIndex, guess) {
-	var wordToCheck = word.trim().split(' ');
+function guessTransform(guessWord, newIndex, guess) {
+	var wordToCheck = guessWord.trim().split(' ');
 	console.log(wordToCheck);
 
 	wordToCheck[newIndex] = guess;
@@ -65,11 +67,10 @@ function guessTransform(word, newIndex, guess) {
 
 // checking if guess is in word and displaying that new word, also updating the guessed letters
 function checkGuess(guess) {
-	guessCount--;
 	usedLetters.push(guess);
 	console.log('used letters:', usedLetters[0]);
 
-	letterBank.style.display = 'block';
+	letterBank.style.display = 'inline-block';
 	var disp = usedLetters[counter - 1];
 	letterDisplay.textContent += (disp + '  ');
 
@@ -96,12 +97,30 @@ function checkGuess(guess) {
 	}
 }
 
+function guessInfo() {
+	if (counter === 0) {
+		guessText.textContent = "Guesses left: " + guessCount;
+	}
+	else {
+		guessCount --;
+		guessText.textContent = "Guesses left: " + guessCount;
+	}
+}
+
 // end the game
 function gameOver() {
-	message.firstChild.nodeValue = 'Game over!';
-	errorMessage.style.display = 'none';
-	form.style.display = 'none';
-	form.reset();
+	if (isWinner === true) {
+		message.firstChild.nodeValue = 'You got it!';
+		form.reset();
+	}
+	else
+	if (counter === 7 && isWinner === false) {
+		message.firstChild.nodeValue = 'Game over!';
+		errorMessage.style.display = 'none';
+		guessText.style.display = 'none';
+		form.style.display = 'none';
+		form.reset();
+	}
 }
 
 // Interact with the DOM
@@ -117,8 +136,8 @@ startButton.addEventListener('click', function() {
 		wordSection.style.display = 'block';
 		wordDisplay.style.display = 'block';
 		wordDisplay.textContent = guessWord;
-		guessText.style.display = 'block';
-		guessText.textContent = "Guesses left: " + guessCount;
+		guessText.style.display = 'inline-block';
+		guessInfo();
 		input.focus();
 	}, 500);
 
@@ -131,18 +150,25 @@ input.addEventListener('input', function(e) {
 	if (attempt === '') {
 		errorMessage.textContent = '';
 	}
-	else if (attempt.length === 1) {
+	else
+	if (usedLetters.indexOf(attempt) !== -1) {
+		errorMessage.firstChild.nodeValue = 'Already guessed that letter.';
+		form.reset();
+	}
+	else
+	if (attempt.length === 1) {
 		if (!checkForLetter(attempt)) {
 			errorMessage.textContent = 'Please enter a letter';
 			form.reset();
 		}
 	}
-	else if (attempt === ' ') {
+	else
+	if (attempt === ' ') {
 		errorMessage.textContent = 'Please enter a letter';
 		form.reset();
 	}
- 	else if (attempt.length !== 1) {
-		errorMessage.style.display = 'block';
+ 	else
+ 	if (attempt.length !== 1) {
 		errorMessage.textContent = 'Please enter only one letter';
 		form.reset();
 	}
@@ -154,30 +180,19 @@ form.addEventListener('submit', function(e) {
 
 	var attempt = e.target[0].value.toLowerCase();
 
-	if (isWinner === true) {
-		message.firstChild.nodeValue = 'You got it!';
-		form.reset();
-	}
-	else if (counter === 8 && isWinner === false) {
-		gameOver();
-	}
-	else if (attempt === '') {
+	if (attempt === '') {
 		errorMessage.textContent = 'Please enter something!';
 		form.reset();
 	}
-	else if (attempt.length === 1 && attempt >= 'a' && attempt <= 'z') {
-		if (usedLetters.indexOf(attempt) !== -1) {
-			setTimeout(function() {
-				message.firstChild.nodeValue = 'Already guessed that letter.';
-				form.reset();
-			}, 175)
-		}
-		else {
-			counter++;
-			checkGuess(attempt);
-		}
+	else
+	if (attempt.length === 1 && attempt >= 'a' && attempt <= 'z') {
+		counter++;
+		checkGuess(attempt);
 	}
+
+	// update guesses left info
+	guessInfo()
+
 	console.log('count:', counter);
 
 }, false);
-
