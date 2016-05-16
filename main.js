@@ -7,6 +7,7 @@ var usedLetters = [];
 var counter = 0;
 var guessCount = 8;
 var isWinner = false;
+var wordToCheck = '';
 var startButton = document.getElementById('start-button');
 var message = document.getElementById('message');
 var form = document.getElementById('form');
@@ -57,33 +58,39 @@ function checkForLetter(letter) {
 }
 
 function guessTransform(guessWord, newIndex, guess) {
-	var wordToCheck = guessWord.trim().split(' ');
+
+	wordToCheck = guessWord.trim().split('');
+	console.log(wordToCheck);
+
 	console.log(wordToCheck);
 
 	wordToCheck[newIndex] = guess;
+	console.log('2nd', wordToCheck);
 
 	return wordToCheck.join('');
 }
 
 // checking if guess is in word and displaying that new word, also updating the guessed letters
-function checkGuess(guess) {
-	usedLetters.push(guess);
+function checkGuess(guessLetter) {
+	usedLetters.push(guessLetter);
 	console.log('used letters:', usedLetters[0]);
 
 	letterBank.style.display = 'inline-block';
 	var disp = usedLetters[counter - 1];
 	letterDisplay.textContent += (disp + '  ');
 
-  if (randomWord.indexOf(guess) !== -1) {
+  if (randomWord.indexOf(guessLetter) !== -1) {
 		form.reset();
 		setTimeout(function() {
 			message.firstChild.nodeValue = 'Most excellent.';
 
 			// find the index of the current guess in the random word
-			var newIndex = randomWord.indexOf(guess);
+			var newIndex = randomWord.indexOf(guessLetter);
 
 			// assign the guessed letter to the correct index
-			wordToShow = guessTransform(guessWord, newIndex, guess);
+			wordToShow = guessTransform(guessWord, newIndex, guessLetter);
+
+			// console.log(wordToShow);
 
 			// display the new word on the screen
 			wordDisplay.textContent = wordToShow;
@@ -145,30 +152,30 @@ startButton.addEventListener('click', function() {
 
 // Display error message on keyUp
 input.addEventListener('input', function(e) {
-	var attempt = e.target.value.toLowerCase();
+	var guessLetter = e.target.value.toLowerCase();
 
-	if (attempt === '') {
+	if (guessLetter === '') {
 		errorMessage.textContent = '';
 	}
 	else
-	if (usedLetters.indexOf(attempt) !== -1) {
+	if (usedLetters.indexOf(guessLetter) !== -1) {
 		errorMessage.firstChild.nodeValue = 'Already guessed that letter.';
 		form.reset();
 	}
 	else
-	if (attempt.length === 1) {
-		if (!checkForLetter(attempt)) {
+	if (guessLetter.length === 1) {
+		if (!checkForLetter(guessLetter)) {
 			errorMessage.textContent = 'Please enter a letter';
 			form.reset();
 		}
 	}
 	else
-	if (attempt === ' ') {
+	if (guessLetter === ' ') {
 		errorMessage.textContent = 'Please enter a letter';
 		form.reset();
 	}
  	else
- 	if (attempt.length !== 1) {
+ 	if (guessLetter.length !== 1) {
 		errorMessage.textContent = 'Please enter only one letter';
 		form.reset();
 	}
@@ -178,21 +185,21 @@ input.addEventListener('input', function(e) {
 form.addEventListener('submit', function(e) {
 	e.preventDefault();
 
-	var attempt = e.target[0].value.toLowerCase();
+	var guessLetter = e.target[0].value.toLowerCase();
 
-	if (attempt === '') {
+	if (guessLetter === '') {
 		errorMessage.textContent = 'Please enter something!';
 		form.reset();
 	}
 	else
-	if (attempt.length === 1 && attempt >= 'a' && attempt <= 'z') {
+	if (guessLetter.length === 1 && guessLetter >= 'a' && guessLetter <= 'z') {
 		counter++;
-		checkGuess(attempt);
+		checkGuess(guessLetter);
 	}
 
 	// update guesses left info
 	guessInfo()
 
-	console.log('count:', counter);
+	// console.log('count:', counter);
 
 }, false);
