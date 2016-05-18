@@ -95,6 +95,7 @@ function checkGuess(guessLetter) {
 			// display the new word on the screen
 			wordDisplay.textContent = wordToShow;
 		}, 175)
+		checkWinner(wordDisplay);
 	}
 	else {
 		form.reset();
@@ -111,6 +112,12 @@ function guessInfo() {
 	else {
 		guessCount --;
 		guessText.textContent = "Guesses left: " + guessCount;
+	}
+}
+
+function checkWinner(word) {
+	if (wordDisplay.indexOf('-') === -1) {
+		isWinner = true;
 	}
 }
 
