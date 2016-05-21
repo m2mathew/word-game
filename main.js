@@ -1,7 +1,7 @@
 // Initialize variables
 var wordBank = ['the', 'bank', 'is', 'open', 'every', 'single', 'day', 'dude', 'man', 'person', 'dog', 'turtle', 'drum', 'internet', 'game'];
 var wordLength = 0;
-var randomWord = '';
+var answer = '';
 var guessWord = '';
 var usedLetters = [];
 var counter = 0;
@@ -33,15 +33,15 @@ function messageDisplay() {
 	}, 1500);
 }
 
-function getRandomWord() {
-	randomWord = wordBank[Math.floor(Math.random() * wordBank.length)].toLowerCase();
-	wordLength = randomWord.length;
-	console.log('the chosen word is:', randomWord);
-	if (randomWord.length < 3) {
-		getRandomWord();
+function getAnswer() {
+	answer = wordBank[Math.floor(Math.random() * wordBank.length)].toLowerCase();
+	wordLength = answer.length;
+	console.log('the chosen word is:', answer);
+	if (answer.length < 3) {
+		getAnswer();
 	}
 	getBlankWord();
-	return randomWord;
+	return answer;
 }
 
 function getBlankWord() {
@@ -58,14 +58,11 @@ function checkForLetter(letter) {
 }
 
 function guessTransform(guessWord, newIndex, guess) {
-
 	wordToCheck = guessWord.trim().split('');
-	console.log(wordToCheck);
-
-	console.log(wordToCheck);
-
-	wordToCheck[newIndex] = guess;
-	console.log('2nd', wordToCheck);
+	for (var i = 0; i < wordToCheck.length; i++) {
+		if (guess === wordToCheck[i])
+			wordToCheck[i] = guess;
+	}
 
 	return wordToCheck.join('');
 }
@@ -79,13 +76,13 @@ function checkGuess(guessLetter) {
 	var disp = usedLetters[counter - 1];
 	letterDisplay.textContent += (disp + '  ');
 
-  if (randomWord.indexOf(guessLetter) !== -1) {
+  if (answer.indexOf(guessLetter) !== -1) {
 		form.reset();
 		setTimeout(function() {
 			message.firstChild.nodeValue = 'Most excellent.';
 
 			// find the index of the current guess in the random word
-			var newIndex = randomWord.indexOf(guessLetter);
+			var newIndex = answer.indexOf(guessLetter);
 
 			// assign the guessed letter to the correct index
 			wordToShow = guessTransform(guessWord, newIndex, guessLetter);
@@ -142,7 +139,7 @@ function gameOver() {
 // Start button shows game board
 startButton.addEventListener('click', function() {
 	messageDisplay();
-	getRandomWord();
+	getAnswer();
 
 	setTimeout(function() {
 		startButton.style.display = 'none';
