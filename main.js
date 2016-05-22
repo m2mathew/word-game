@@ -21,7 +21,6 @@ var letterDisplay = document.getElementById('letter-display');
 var guessText = document.getElementById('guess-text');
 var guessNumber = document.getElementById('guess-number');
 
-
 // Initialize functions
 function messageDisplay() {
 	if (counter === 0) {
@@ -124,8 +123,7 @@ function gameOver() {
 		message.firstChild.nodeValue = 'You got it!';
 		form.reset();
 	}
-	else
-	if (counter === 7 && isWinner === false) {
+	else if (counter === 7 && isWinner === false) {
 		message.firstChild.nodeValue = 'Game over!';
 		errorMessage.style.display = 'none';
 		guessText.style.display = 'none';
@@ -161,25 +159,21 @@ input.addEventListener('input', function(e) {
 	if (guessLetter === '') {
 		errorMessage.textContent = '';
 	}
-	else
-	if (usedLetters.indexOf(guessLetter) !== -1) {
+	else if (usedLetters.indexOf(guessLetter) !== -1) {
 		errorMessage.firstChild.nodeValue = 'Already guessed that letter.';
 		form.reset();
 	}
-	else
-	if (guessLetter.length === 1) {
+	else if (guessLetter.length === 1) {
 		if (!checkForLetter(guessLetter)) {
 			errorMessage.textContent = 'Please enter a letter';
 			form.reset();
 		}
 	}
-	else
-	if (guessLetter === ' ') {
+	else if (guessLetter === ' ') {
 		errorMessage.textContent = 'Please enter a letter';
 		form.reset();
 	}
- 	else
- 	if (guessLetter.length !== 1) {
+ 	else if (guessLetter.length !== 1) {
 		errorMessage.textContent = 'Please enter only one letter';
 		form.reset();
 	}
@@ -195,8 +189,7 @@ form.addEventListener('submit', function(e) {
 		errorMessage.textContent = 'Please enter something!';
 		form.reset();
 	}
-	else
-	if (guessLetter.length === 1 && guessLetter >= 'a' && guessLetter <= 'z') {
+	else if (guessLetter.length === 1 && guessLetter >= 'a' && guessLetter <= 'z') {
 		counter++;
 		checkGuess(guessLetter);
 	}
